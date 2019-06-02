@@ -1,9 +1,16 @@
-<mat-list>
-  <h3 mat-subheader>Folders</h3>
-  <!-- <mat-list-item *ngFor="let folder of folders">
-    <mat-icon mat-list-icon>folder</mat-icon>
-    <h4 mat-line>{{folder.name}}</h4>
-    <p mat-line> {{folder.updated | date}} </p>
-    <mat-divider></mat-divider>
-  </mat-list-item> -->
+<mat-list id="list">
+  <mat-list-item *ngFor="let repo of repos">
+    <img [src]="repo?.avatar">
+    <h4 mat-line *ngIf="repo?.name_repo">{{repo?.name_repo}}</h4>
+    <p mat-line class="desc" *ngIf="repo?.description_repo"> {{repo?.description_repo}} </p>
+    <p mat-line class="taux"> 
+      <label class="stars" *ngIf="repo?.nb_stars">{{repo?.nb_stars}}</label>
+      <span *ngIf="repo?.nb_stars"> Stars</span>
+      <label class="issues" *ngIf="repo?.nb_issues">{{repo?.nb_issues}}</label>
+      <span *ngIf="repo?.nb_issues">Issues</span> 
+      <label class="info" *ngIf="repo?.time && repo?.name_owner">submitted 
+        <span class="time">{{repo?.time}} days</span>  ago by 
+        <span class="owner">{{repo?.name_owner}}</span></label> 
+    </p>
+  </mat-list-item>
 </mat-list>
